@@ -20,8 +20,8 @@ contract("SimpleBank", function (accounts) {
   });
 
   it("ready to be solved!", async() => {
-    const eth100 = 100e18;
-    assert.equal(await web3.eth.getBalance(alice), eth100.toString());
+    const eth100 = 1e21;
+    assert.equal(await web3.eth.getBalance(alice), eth100);
   });
 
   it("is owned by owner", async () => {
@@ -107,9 +107,10 @@ contract("SimpleBank", function (accounts) {
   });
 
   it("should not be able to withdraw more than has been deposited", async () => {
+    const ether = 1e18;
     await instance.enroll({ from: alice });
     await instance.deposit({ from: alice, value: deposit });
-    await catchRevert(instance.withdraw(deposit + 1, { from: alice }));
+    await catchRevert(instance.withdraw(deposit + 1*ether, { from: alice }));
   });
 
   it("should emit the appropriate event when a withdrawal is made", async () => {
