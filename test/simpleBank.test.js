@@ -20,7 +20,7 @@ contract("SimpleBank", function (accounts) {
   });
 
   it("ready to be solved!", async() => {
-    const eth100 = 1e21;
+    const eth100 = 1e20;
     assert.equal(await web3.eth.getBalance(alice), eth100);
   });
 
